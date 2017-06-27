@@ -19,6 +19,10 @@ copyright:
 google-analytics:
   id:               "UA-58469115-9"
 
+# Disqus
+disqus:
+  id:               "github-blog-10"
+
 # URL
 url:                "https://simeg.github.io" # the base hostname & protocol for your site
 # url:                "http://localhost:4000" # use this url when you develop
