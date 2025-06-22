@@ -1,23 +1,27 @@
-.PHONY: serve build check clean init-theme update-theme deploy
+.PHONY: update-state check dry-run install run lint test coverage watch
 
-ZOLA = $(shell which zola)
-GIT = $(shell which git)
+install:
+	poetry install
 
-serve: ## Start development server with live reload
-	$(ZOLA) serve
+update-state:
+	poetry run python -m everdrive_version_notifier.update_state
 
-build: ## Generate static site for production
-	$(ZOLA) build
+check:
+	poetry run everdrive-check
 
-check: ## Validate content and check internal links
-	$(ZOLA) check
+dry-run:
+	DRY_RUN=true poetry run everdrive-check
 
-clean: ## Remove generated public directory
-	rm -rf public/
+run: check
 
-init-theme: ## Initialize the archie-zola theme submodule for first time setup
-	$(GIT) submodule update --init --recursive
+lint:
+	poetry run black src tests
 
-update-theme: ## Update the archie-zola theme submodule
-	$(GIT) submodule update --remote themes/archie-zola
+test: lint
+	poetry run pytest
 
+coverage:
+	poetry run pytest --cov=everdrive_version_notifier --cov-report=term-missing
+
+watch:
+	poetry run ptw --now

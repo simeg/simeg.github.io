@@ -1,0 +1,36 @@
+[project]
+name = "everdrive-version-notifier"
+version = "0.1.0"
+description = "Notifies me when a new EverDrive firmware version is released."
+authors = [
+    {name = "Simon Egersand",email = "s.egersand@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "requests (>=2.32.4,<3.0.0)",
+    "beautifulsoup4 (>=4.13.4,<5.0.0)",
+    "python-dotenv (>=1.1.0,<2.0.0)",
+    "black (>=24.3.0,<25.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "everdrive_version_notifier"
+version = "0.1.0"
+description = ""
+authors = ["Simon Egersand <s.egersand@gmail.com>"]
+readme = "README.md"
+packages = [{ include = "everdrive_version_notifier", from = "src" }]
+[tool.poetry.scripts]
+everdrive-check = "everdrive_version_notifier.run_notifier:main"
+
+[tool.poetry.group.dev.dependencies]
+black = ">=24.3.0,<25.0.0"
+pytest = "^8.4.1"
+pytest-cov = "^6.2.1"
+pytest-watch = "^4.2.0"

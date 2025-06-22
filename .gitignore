@@ -1,3 +1,6 @@
 # Generated site output
 public/
-
+.env
+.coverage
+htmlcov/
+coverage.xml

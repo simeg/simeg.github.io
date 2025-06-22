@@ -1,59 +1,88 @@
-# dotlog
+# EverDrive OS Notifier
 
-A minimal, fast personal blog built with modern static site generation.
+This tool checks for new firmware files published to the [EverDrive GB X-Series OS directory](https://krikzz.com/pub/support/everdrive-gb/x-series/OS/) and notifies you via Telegram when new `.zip` files appear.
 
-🌐 **Live site:** [simeg.github.io](https://simeg.github.io)
-
-## Tech Stack
-
-- **[Zola](https://www.getzola.org/)** - Fast static site generator written in Rust
-- **[archie-zola](https://github.com/XXXMrG/archie-zola)** - Clean, minimal theme with dark/light mode
-- **GitHub Pages** - Hosting with automatic deployment
-- **GitHub Actions** - CI/CD pipeline for seamless publishing
-
-## Architecture
-
-- **Content:** Blog posts in `content/posts/`, written in Markdown with TOML frontmatter
-- **Theme:** Git submodule pointing to archie-zola theme for easy updates
-- **Deployment:** Fully automated via GitHub Actions on every push to master
-- **Config:** Single `config.toml` file for all site settings
-
-## Development
-
-```bash
-# Start development server
-make serve
-
-# Build for production  
-make build
-
-# Initialize theme (first time setup)
-make init-theme
-
-# Update theme to latest version
-make update-theme
-```
-
-## Deployment
-
-Fully automated! Just push to master:
-
-```bash
-git push origin master
-```
-
-The GitHub Actions workflow automatically:
-1. Builds the site with Zola
-2. Deploys to GitHub Pages
-3. Makes it live at simeg.github.io
-
-## Why This Stack?
-
-- **Zola** for speed and simplicity - no JavaScript build process needed
-- **GitHub Pages** for free, reliable hosting with custom domain support
-- **Minimal dependencies** - just Rust (Zola) and Git submodules
-- **Git-based workflow** - write posts in your favorite editor, commit, and deploy
+🔔 **You will get a Telegram message** with direct links to the new files if any are found. If nothing new is found, nothing happens.
 
 ---
 
-Built with ❤️ and deployed automatically via GitHub Actions.
+## 🤔 Why This Exists
+
+You're monitoring a firmware directory that rarely updates (maybe once a year). This project automates that process so you don't have to remember to check it manually.
+
+Once set up, **it just runs once per week via GitHub Actions** and tells you only if something changed.
+
+You’ll likely forget this tool even exists — and that’s by design.
+
+---
+
+## 📦 Project Structure
+
+- `src/everdrive_version_notifier/`: main source code
+- `tests/`: unit tests for everything
+- `latest_files.json`: snapshot of the last known file state (checked into repo)
+- `.github/workflows/check_files.yml`: GitHub Actions automation
+
+---
+
+## 🧠 What to Expect
+
+Each week:
+- The GitHub Action runs and loads the `latest_files.json` state
+- It scrapes the EverDrive OS folder for new `.zip` files
+- If it finds any that aren't in the state, it:
+  - Sends you a Telegram message
+  - Updates the `latest_files.json` file in memory (not committed)
+- You'll get a PR or can run a manual `make update-state` to commit the new state
+
+If no new files are found:
+- It prints "No new files found." and does nothing else
+
+---
+
+## 🚀 Setup
+
+1. Clone the repo
+2. Create a `.env` file with:
+
+   ```
+   TELEGRAM_BOT_TOKEN=your_bot_token
+   TELEGRAM_CHAT_ID=your_chat_id
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   poetry install
+   ```
+
+4. Run the notifier locally (optional):
+
+   ```bash
+   make check
+   ```
+
+---
+
+## 🛠️ Makefile Targets
+
+| Target             | Description |
+|--------------------|-------------|
+| `make check`       | Run the full check (load, scrape, notify if new files) |
+| `make update-state`| Manually update the `latest_files.json` snapshot to the current state of the EverDrive site |
+| `make dry-run`     | Simulates a check without sending a Telegram message |
+| `make test`        | Run all unit tests (includes linting first) |
+| `make coverage`    | Run tests and print coverage report |
+| `make watch`       | Watch for changes and re-run tests automatically |
+| `make format`      | Format all Python code using `black` |
+| `make lint`        | Run `black` in check-only mode (lint style enforcement) |
+
+---
+
+## 📎 Notes to Future Me
+
+- The OS directory updates *very* rarely — expect 0–1 updates per year.
+- If you ever change Telegram tokens or chat ID, update `.env` or GitHub Secrets accordingly.
+- Don’t forget to run `make update-state` and commit `latest_files.json` when you receive an update message.
+
+Enjoy the peace of mind ✌️
