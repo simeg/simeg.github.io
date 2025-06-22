@@ -1,5 +1,7 @@
 .PHONY: update-state check dry-run install run lint test coverage watch
 
+ci: check coverage
+
 install:
 	poetry install
 
