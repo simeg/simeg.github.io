@@ -42,3 +42,26 @@ def test_update_state_writes_expected_file(mock_get, tmp_path: Path):
 
     data = json.loads(state_file.read_text())
     assert data == ["file1.zip", "file2.zip", "readme.txt"]
+
+
+@patch("everdrive_version_notifier.update_state.requests.get")
+def test_main_updates_expected_file(mock_get, tmp_path: Path):
+    from everdrive_version_notifier import update_state
+
+    mock_response = Mock()
+    mock_response.text = HTML_SAMPLE
+    mock_response.raise_for_status = Mock()
+    mock_get.return_value = mock_response
+
+    # Patch __file__ so that main() writes to our tmp_path
+    dummy_file = tmp_path / "dummy.py"
+    dummy_file.touch()  # Make sure file exists
+
+    with patch.object(update_state, "__file__", str(dummy_file)):
+        update_state.main()
+
+    state_file = tmp_path / "latest_files.json"
+    assert state_file.exists()
+
+    data = json.loads(state_file.read_text())
+    assert data == ["file1.zip", "file2.zip", "readme.txt"]
