@@ -4,7 +4,7 @@ This tool checks for new firmware files published to the [EverDrive GB X-Series 
 
 🔔 **You will get a Telegram message** with direct links to the new files if any are found. If nothing new is found, nothing happens.
 
----
+![Python Hugging Everdrive](python_hugging_everdrive.png)
 
 ## 🤔 Why This Exists
 
