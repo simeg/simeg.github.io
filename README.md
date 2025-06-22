@@ -1,4 +1,4 @@
-# EverDrive OS Notifier [![Check EverDrive Files](https://github.com/simeg/everdrive-version-notifier/actions/workflows/check_files.yml/badge.svg)](https://github.com/simeg/everdrive-version-notifier/actions/workflows/check_files.yml) [![codecov](https://codecov.io/gh/simeg/everdrive-version-notifier/branch/main/graph/badge.svg)](https://codecov.io/gh/segersand/everdrive-version-notifier)
+# EverDrive OS Notifier [![Check EverDrive Files](https://github.com/simeg/everdrive-version-notifier/actions/workflows/check_files.yml/badge.svg)](https://github.com/simeg/everdrive-version-notifier/actions/workflows/check_files.yml) [![codecov](https://codecov.io/gh/simeg/everdrive-version-notifier/branch/main/graph/badge.svg)](https://codecov.io/gh/simeg/everdrive-version-notifier)
 
 This tool checks for new firmware files published to the [EverDrive GB X-Series OS directory](https://krikzz.com/pub/support/everdrive-gb/x-series/OS/) and notifies you via Telegram when new `.zip` files appear.
 
