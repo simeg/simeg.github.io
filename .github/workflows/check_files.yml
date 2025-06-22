@@ -1,4 +1,4 @@
-name: Check Everdrive OS Files
+name: Check EverDrive Files
 
 on:
   schedule:
