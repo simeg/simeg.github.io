@@ -1,4 +1,5 @@
 import pytest
+import os
 from unittest.mock import patch, Mock
 from everdrive_version_notifier import run_notifier
 
