@@ -1,29 +1,31 @@
 .PHONY: update-state check dry-run install run lint test coverage watch
 
+POETRY_RUN=poetry run
+
 ci: check coverage
 
 install:
 	poetry install
 
 update-state:
-	poetry run python -m everdrive_version_notifier.update_state
+	$(POETRY_RUN) python -m everdrive_version_notifier.update_state
 
 check:
-	poetry run everdrive-check
+	$(POETRY_RUN) everdrive-check
 
 dry-run:
-	DRY_RUN=true poetry run everdrive-check
+	DRY_RUN=true $(POETRY_RUN) everdrive-check
 
 run: check
 
 lint:
-	poetry run black src tests
+	$(POETRY_RUN) black src tests
 
 test: lint
-	poetry run pytest
+	$(POETRY_RUN) pytest
 
 coverage:
-	poetry run pytest --cov=everdrive_version_notifier --cov-report=term-missing
+	$(POETRY_RUN) pytest --cov=everdrive_version_notifier --cov-report=term-missing --cov-report=xml
 
 watch:
-	poetry run ptw --now
+	$(POETRY_RUN) ptw --now
