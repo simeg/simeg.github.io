@@ -25,15 +25,20 @@ deploy: ## Build site and deploy to gh-pages branch
 	@echo "Building site..."
 	$(ZOLA) build
 	@echo "Deploying to gh-pages..."
-	@# Clean up any existing worktree
-	$(GIT) worktree remove public-deploy 2>/dev/null || true
-	@# Create fresh worktree
-	$(GIT) worktree add public-deploy gh-pages 2>/dev/null || $(GIT) worktree add --orphan public-deploy gh-pages
-	@# Clear existing files and copy new ones
-	rm -rf public-deploy/* public-deploy/.*[^.] 2>/dev/null || true
-	cp -r public/* public-deploy/ 2>/dev/null || true
+	@# Stash current branch
+	$(GIT) stash push -m "Deploy stash" || true
+	@# Switch to gh-pages branch
+	$(GIT) checkout gh-pages
+	@# Remove old files (keep .git)
+	find . -mindepth 1 -maxdepth 1 ! -name '.git' ! -name '.gitignore' -exec rm -rf {} +
+	@# Copy new files
+	cp -r public/* .
 	@# Commit and push
-	cd public-deploy && $(GIT) add . && $(GIT) commit -m "Deploy site - $$(date)" && $(GIT) push origin gh-pages
-	@# Clean up
-	$(GIT) worktree remove public-deploy 2>/dev/null || rm -rf public-deploy
+	$(GIT) add .
+	$(GIT) commit -m "Deploy site - $$(date)"
+	$(GIT) push origin gh-pages
+	@# Switch back to master
+	$(GIT) checkout master
+	@# Restore any stashed changes
+	$(GIT) stash pop 2>/dev/null || true
 	@echo "Deployment complete!"
