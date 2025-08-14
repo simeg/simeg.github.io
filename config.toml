@@ -3,7 +3,7 @@ base_url = "https://simeg.github.io"
 
 # The site title and description; used in feeds by default.
 title = "Simon's Microblog"
-description = "TODO-description"
+description = "Occasional notes on tech, code, and things I’ve learned along the way."
 
 # The default language; used in feeds.
 default_language = "en"
@@ -69,7 +69,7 @@ render_emoji = true
 mode = "toggle"
 
 # subtitle will show under the title in index page
-subtitle = "TODO-subtitle"
+subtitle = "Occasional notes on tech, code, and things I’ve learned along the way."
 
 # if set true, will use external CDN resource to load font and js file
 useCDN = false
