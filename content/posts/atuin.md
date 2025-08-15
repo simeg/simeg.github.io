@@ -1,7 +1,6 @@
 +++
 title = "Exploring Atuin"
 date = 2025-08-15
-description = "Discovering Atuin, a powerful shell history manager that enables cloud syncing and self-hosting for command line productivity."
 
 [taxonomies]
 tags = ["atuin", "tech", "cli"]

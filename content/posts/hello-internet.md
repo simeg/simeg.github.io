@@ -1,7 +1,6 @@
 +++
 title = "Hello Internet"
 date = 2025-08-14
-description = "Welcome to my blog! Reflecting on the fun of building things with AI assistance and getting back to the joy of programming."
 
 [taxonomies]
 tags = ["personal"]
