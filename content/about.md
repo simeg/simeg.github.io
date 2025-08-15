@@ -1,6 +1,7 @@
 +++
 title = "About"
 date = 2025-08-14
+description = "Learn more about Simon, a software engineer passionate about technology and building tools for developers."
 +++
 
 I’m Simon, and this is my tiny corner of the internet. I occasionally write code and push it
