@@ -2,4 +2,4 @@
 title = "dotlog"
 +++
 
-Welcome to my personal blog where I share thoughts and experiences.
+Occasional notes on tech, code, and things I’ve learned along the way.
