@@ -1,4 +1,4 @@
-# Simon's Microblog
+# dotlog
 
 A minimal, fast personal blog built with modern static site generation.
 
