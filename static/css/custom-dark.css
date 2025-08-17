@@ -1,0 +1,6 @@
+/* Custom dark mode styles */
+
+.bold {
+  color: var(--darkMaincolor, #50fa7b) !important;
+  background-color: rgba(80, 250, 123, 0.1) !important;
+}
