@@ -1,6 +1,7 @@
 +++
 title = "Hello Internet"
 date = 2025-08-14
+description = "Hello Internet"
 
 [taxonomies]
 tags = ["personal"]

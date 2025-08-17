@@ -1,6 +1,7 @@
 +++
 title = "Passing passwords in Bash without storing them"
 date = 2025-08-17
+description = "A clever way to pass passwords in Bash scripts without exposing them in shell history"
 
 [taxonomies]
 tags = ["bash", "tech", "cli"]

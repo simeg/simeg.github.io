@@ -1,6 +1,7 @@
 +++
 title = "Exploring Atuin"
 date = 2025-08-15
+description = "Self hosted shell history manager"
 
 [taxonomies]
 tags = ["atuin", "tech", "cli"]
