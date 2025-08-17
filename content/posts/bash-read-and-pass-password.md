@@ -38,6 +38,8 @@ password=$MY_PASSWORD
 ```
 
 So what's happening here?
+
+{% list() %}
 * Subshell `(...)`: Runs in its own shell; {% bold() %}variables die when it exits—no unset needed.{% end %}
 * `printf 'Password: ' >/dev/tty`: Prints a prompt to the terminal, not stdout, so it doesn't interfere with the script's output.
 * `IFS=`: Disables trimming/splitting so leading/trailing spaces in the password aren't lost.
