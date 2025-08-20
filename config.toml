@@ -82,6 +82,17 @@ copyright = "simon"
 # config your Google Analysis ID
 ga = "G-55BSWDE35Y"
 
+# Custom CSS files to include in <head>
+custom_css = [
+    "css/custom.css",
+    "css/custom-dark.css"
+]
+
+# Custom JS files to include in <head>
+# custom_js = [
+#     "js/themetoggle.js"
+# ]
+
 # config multi-language menu and other text
 [[extra.translations.en]]
 show_more = "Read more ⟶"
